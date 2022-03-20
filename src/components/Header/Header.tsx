@@ -1,18 +1,39 @@
-import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
-import {FC} from 'react'
+import { AppBar, List, ListItem, Box, IconButton, Toolbar, Typography, SwipeableDrawer } from '@mui/material'
+import {FC, useState} from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
+import { User } from './User';
 
 export const Header: FC = () => {
+
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
   return (
-    <AppBar position='static'>
-      <Toolbar variant='dense'>
-        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 3 }}>
+    <AppBar color='primary' position='static'>
+      <Toolbar variant='regular'>
+        <IconButton onClick={() => setMenuOpen(true)} edge='start' color="inherit" aria-label="menu" sx={{ mr: 2 }}>
           <MenuIcon />
         </IconButton>
-        <Typography variant='h6' fontWeight='600' fontSize='20px' textTransform='uppercase' color='inherit' component='div'>
-          Chat
+        <Typography variant='h6' fontWeight='600' fontSize='17px' color='inherit' component='div'>
+          Chat App
         </Typography>
+        <User />
       </Toolbar>
+
+      <SwipeableDrawer
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        onOpen={() => setMenuOpen(true)}
+      >
+        <Box
+          sx={{width: 250}}
+          onClick={() => setMenuOpen(false)}
+          onKeyDown={() => setMenuOpen(false)}
+        >
+          <List>
+            <ListItem></ListItem>
+          </List>
+        </Box>
+      </SwipeableDrawer>
     </AppBar>
   )
 }
