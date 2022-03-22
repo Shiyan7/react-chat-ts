@@ -2,15 +2,20 @@ import { FC } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from '../../router';
 import { CHAT_ROUTE, LOGIN_ROUTE } from '../../utils/conts';
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { useAuth } from '../../providers/useAuth';
+import { Loader } from '../Loader/Loader';
 
 export const AppRouter: FC = () => {
 
-  const auth = false;
+  const { ga } = useAuth()
+  const [ user, loading ] = useAuthState(ga)
 
   return (
-    auth ? 
+
+    loading ? <Loader /> :
     
-    (
+    user ? (
       <Switch>
         {privateRoutes.map(route =>
           <Route

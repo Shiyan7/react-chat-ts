@@ -2,6 +2,7 @@ import { AppBar, List, ListItem, Box, IconButton, Toolbar, Typography, Swipeable
 import {FC, useState} from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import { User } from './User';
+import { ToggleColorMode } from './ToggleColorMode';
 
 export const Header: FC = () => {
 
@@ -17,6 +18,7 @@ export const Header: FC = () => {
           Chat App
         </Typography>
         <User />
+        <ToggleColorMode />
       </Toolbar>
 
       <SwipeableDrawer
@@ -30,7 +32,8 @@ export const Header: FC = () => {
           onKeyDown={() => setMenuOpen(false)}
         >
           <List>
-            <ListItem></ListItem>
+            <ListItem>
+            </ListItem>
           </List>
         </Box>
       </SwipeableDrawer>

@@ -1,8 +1,7 @@
 import React from "react";
-import {Login} from "../pages/Login";
-import {Chat} from '../pages/Chat';
+import { SignIn, SignUp } from "../pages";
+import { Chat } from '../pages/Chat';
 import { CHAT_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE } from "../utils/conts";
-import { Register } from "../pages/Register";
 
 export interface IRoute {
     path: string;
@@ -11,8 +10,8 @@ export interface IRoute {
 }
 
 export const publicRoutes: IRoute[] = [
-    {path: LOGIN_ROUTE, exact: true, component: Login},
-    {path: REGISTER_ROUTE, exact: true, component: Register}
+    {path: LOGIN_ROUTE, exact: true, component: SignIn},
+    {path: REGISTER_ROUTE, exact: true, component: SignUp}
 ]
 
 export const privateRoutes: IRoute[] = [

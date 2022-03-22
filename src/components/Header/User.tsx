@@ -1,10 +1,13 @@
 import React, { FC, useState } from 'react';
 import { Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material'
 import { Settings, Logout } from '@mui/icons-material'
+import { signOut } from 'firebase/auth';
+import { useAuth } from '../../providers/useAuth';
 
 export const User: FC = () => {
   const [menuOpen, setMenuOpen] = useState<null | HTMLElement>(null);
   const open = Boolean(menuOpen);
+  const { ga } = useAuth()
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     setMenuOpen(e.currentTarget);
@@ -64,7 +67,7 @@ export const User: FC = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> My account
+          <Avatar /> {ga.currentUser?.displayName || 'My account'}
         </MenuItem>
         <Divider />
         <MenuItem>
@@ -73,7 +76,7 @@ export const User: FC = () => {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => signOut(ga)}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

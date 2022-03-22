@@ -1,12 +1,9 @@
 import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
 import { App } from './App'
 import { initializeApp } from "firebase/app";
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { AppContext } from './Context/AppContext';
+import { AuthProvider } from './providers/AuthProvider';
 
-const app = initializeApp({
+initializeApp({
   apiKey: "AIzaSyDWGZBlPGIMaWAe2fSOElazPVzdC2WTOzY",
   authDomain: "react-chat-ts-9b81f.firebaseapp.com",
   projectId: "react-chat-ts-9b81f",
@@ -16,14 +13,9 @@ const app = initializeApp({
   measurementId: "G-3VWZGC3292"
 });
 
-const auth = getAuth(app);
-const firestore = getFirestore(app)
-
 ReactDOM.render(
-  <AppContext.Provider value={{auth, firestore}}>
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
-  </AppContext.Provider>,
+  <AuthProvider>
+    <App />
+  </AuthProvider>,
   document.getElementById('root')
 );
