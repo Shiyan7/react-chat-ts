@@ -1,8 +1,9 @@
 import React, { FC, useState } from 'react';
-import { Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material'
+import { Box, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material'
 import { Settings, Logout } from '@mui/icons-material'
 import { signOut } from 'firebase/auth';
 import { useAuth } from '../../providers/useAuth';
+import { Avatar } from '../Avatar/Avatar'
 
 export const User: FC = () => {
   const [menuOpen, setMenuOpen] = useState<null | HTMLElement>(null);
@@ -27,7 +28,7 @@ export const User: FC = () => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{width: 30, height: 30}} />
+            <Avatar />
           </IconButton>
         </Tooltip>
       </Box>
@@ -67,7 +68,8 @@ export const User: FC = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> {ga.currentUser?.displayName || 'My account'}
+          <Avatar />
+          My account
         </MenuItem>
         <Divider />
         <MenuItem>

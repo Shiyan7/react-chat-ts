@@ -1,19 +1,16 @@
 import { createContext, FC, useMemo, useState } from 'react'
 import { AppRouter } from './components/AppRouter/AppRouter'
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
+import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@mui/material'
 import { Header } from './components/Header/Header'
-import { useAuth } from './providers/useAuth';
 import { BrowserRouter } from 'react-router-dom';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 export const App: FC = () => {
 
-  const [mode, setMode] = useState<'light' | 'dark'>('dark');
-  const {ga} = useAuth()
+  const [mode, setMode] = useState<'light' | 'dark'>('light');
 
-  console.log(ga);
-  
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const colorMode = useMemo(
     () => ({
@@ -21,7 +18,7 @@ export const App: FC = () => {
         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
-    [],
+    [prefersDarkMode],
   );
 
   const theme = useMemo(

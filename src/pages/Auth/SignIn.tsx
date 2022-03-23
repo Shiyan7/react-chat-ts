@@ -1,11 +1,11 @@
 import { FC, useState } from 'react'
 import { Button, TextField, FormControlLabel, Checkbox, Link, Box, Typography, Container, Alert, InputAdornment, IconButton } from '@mui/material'
-import { REGISTER_ROUTE } from '../../utils/conts';
+import { REGISTER_ROUTE } from '../../utils/conts'
 import { Link as RouterLink } from 'react-router-dom'
 import { IUser } from '../../types/types'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useAuth } from '../../providers/useAuth'
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 export const SignIn: FC = () => {
 
@@ -55,7 +55,7 @@ export const SignIn: FC = () => {
         <Typography textTransform='uppercase' fontWeight='500' component="h1" fontSize='30px' sx={{ mb: 1 }} >
           Sign in
         </Typography>
-        {error && <Alert sx={{width: '100%', mb: 1, mt: 2}} severity='error'>{error}</Alert>}
+        {error && <Alert sx={{width: '100%', mt: 2, mb: 1}} severity='error'>{error}</Alert>}
         <Box component="form" onSubmit={handleLogin} noValidate>
           <TextField
             margin="normal"
