@@ -1,5 +1,5 @@
-import { FC } from 'react'
-import { Box, CircularProgress } from '@mui/material'
+import {FC} from 'react'
+import {Box, CircularProgress} from '@mui/material'
 
 export const Loader: FC = () => (
     <Box sx={{
@@ -14,6 +14,6 @@ export const Loader: FC = () => (
         pointerEvents: 'none',
         zIndex: '-1'
     }}>
-        <CircularProgress />
+        <CircularProgress/>
     </Box>
 )

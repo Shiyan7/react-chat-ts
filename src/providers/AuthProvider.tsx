@@ -1,10 +1,12 @@
 import { Auth, getAuth, onAuthStateChanged } from "firebase/auth";
+import { Firestore, getFirestore } from "firebase/firestore";
 import { createContext, useState, FC, useEffect, useMemo } from "react";
 import { IAuthUser, TypeSetState } from "../types/types";
 
 interface IContext {
     user: IAuthUser | null
     ga: Auth
+    db: Firestore
     setUser: TypeSetState<IAuthUser | null>
 }
 
@@ -14,6 +16,7 @@ export const AuthProvider: FC = ({children}) => {
     const [user, setUser] = useState<IAuthUser | null>(null)
 
     const ga = getAuth()
+    const db = getFirestore()
 
     useEffect(() => {
 
@@ -41,8 +44,9 @@ export const AuthProvider: FC = ({children}) => {
             user,
             setUser,
             ga,
+            db,
         }),
-        [user, ga]
+        [user, ga, db]
     )
 
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>

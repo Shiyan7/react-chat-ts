@@ -1,10 +1,12 @@
 import { Avatar as MuiAvatar } from '@mui/material';
 import { FC } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useAuth } from '../../providers/useAuth'
 
 export const Avatar: FC = () => {
 
     const { ga } = useAuth();
+    const [user] = useAuthState(ga)
       
     const stringAvatar = (name: string) => {
         return {
@@ -13,9 +15,9 @@ export const Avatar: FC = () => {
     }
 
     return (
-        ga.currentUser?.displayName
+        user?.displayName
         ?
-        <MuiAvatar {...stringAvatar(ga.currentUser.displayName)} sx={{width: 30, height: 30, fontSize: '14px'}} />
+        <MuiAvatar {...stringAvatar(user?.displayName)} sx={{width: 30, height: 30, fontSize: '14px'}} />
         :
         <MuiAvatar sx={{width: 30, height: 30}} />
     )
