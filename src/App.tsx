@@ -21,6 +21,7 @@ export const App: FC = () => {
                 setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
             },
         }),
+        //eslint-disable-next-line
         [prefersDarkMode],
     );
 
@@ -35,7 +36,7 @@ export const App: FC = () => {
     );
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/react-chat-ts/'>
             <ColorModeContext.Provider value={colorMode}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline/>
