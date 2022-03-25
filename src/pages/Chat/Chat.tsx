@@ -71,9 +71,9 @@ export const Chat: FC = () => {
                 <Typography lineHeight='25px' variant='h6' mr='14px'>Chat</Typography>
                 <Typography variant='caption' color='#909090'>2 new messages</Typography>
             </Box>
-            <Grid sx={{backgroundColor: '#f5f5f5', height: '500px', borderRadius: '10px'}}>
-                <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%'}}>
-                    <SimpleBar style={{maxHeight: '100%', marginBottom: '15px'}}>
+            <Grid sx={{height: '500px'}}>
+                <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#f5f5f5', height: '100%', marginBottom: '15px', borderRadius: '10px'}}>
+                    <SimpleBar style={{maxHeight: '100%'}}>
                         <Box ref={chatContainer} sx={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -90,18 +90,18 @@ export const Chat: FC = () => {
                             <NoMessages />}
                         </Box>
                     </SimpleBar>
-                    <Box onSubmit={sendMessage} component='form' sx={{display: 'flex'}}>
-                        <TextField
-                            sx={{width: '100%', mr: '15px'}}
-                            variant='outlined'
-                            placeholder='Type something...'
-                            value={value}
-                            onChange={e => setValue(e.target.value)}
-                        />
-                        <Fab onClick={sendMessage} sx={{padding: '5px 20px'}} color='primary' aria-label="Send message">
-                            <Send />
-                        </Fab>
-                    </Box>
+                </Box>
+                <Box onSubmit={sendMessage} component='form' sx={{display: 'flex'}}>
+                    <TextField
+                        sx={{width: '100%', mr: '15px'}}
+                        variant='outlined'
+                        placeholder='Type something...'
+                        value={value}
+                        onChange={e => setValue(e.target.value)}
+                    />
+                    <Fab onClick={sendMessage} sx={{padding: '5px 20px'}} color='primary' aria-label="Send message">
+                        <Send />
+                    </Fab>
                 </Box>
             </Grid>
         </Container>
