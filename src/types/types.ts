@@ -21,3 +21,20 @@ export interface IUser {
     email: string
     password: string
 }
+
+export interface IAvatar {
+    width?: number
+    height?: number
+    txt?: any
+}
+
+export interface IRoute {
+    path: string;
+    exact?: boolean;
+    component: React.ComponentType;
+}
+
+export interface IMenu {
+    menuOpen: boolean
+    setMenuOpen: Function
+}

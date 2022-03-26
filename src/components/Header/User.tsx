@@ -1,14 +1,16 @@
 import React, { FC, useState } from 'react';
-import { Box, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material'
+import { Box, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip, Avatar as MuiAvatar } from '@mui/material'
 import { Settings, Logout } from '@mui/icons-material'
 import { signOut } from 'firebase/auth';
 import { useAuth } from '../../providers/useAuth';
 import { Avatar } from '../Avatar/Avatar'
+import { Link } from 'react-router-dom'
+import { SETTINGS_ROUTE } from '../../utils/conts';
 
 export const User: FC = () => {
   const [menuOpen, setMenuOpen] = useState<null | HTMLElement>(null);
   const open = Boolean(menuOpen);
-  const { ga } = useAuth()
+  const { ga, user } = useAuth()
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     setMenuOpen(e.currentTarget);
@@ -28,7 +30,7 @@ export const User: FC = () => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar />
+            <MuiAvatar sx={{width: 30, height: 30}} />
           </IconButton>
         </Tooltip>
       </Box>
@@ -67,12 +69,12 @@ export const User: FC = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
-          <Avatar />
-          My account
+        <MenuItem selected={true}>
+          <Avatar width={30} height={30} txt={user?.name} />
+          {user?.name}
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem component={Link} to={SETTINGS_ROUTE} >
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>

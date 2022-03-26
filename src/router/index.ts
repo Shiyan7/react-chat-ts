@@ -1,13 +1,6 @@
-import React from "react";
-import {SignIn, SignUp} from "../pages";
-import {Chat} from '../pages/Chat/Chat';
-import {CHAT_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE} from "../utils/conts";
-
-export interface IRoute {
-    path: string;
-    exact?: boolean;
-    component: React.ComponentType;
-}
+import {Settings, SignIn, SignUp, Chat} from "../pages";
+import {CHAT_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE, SETTINGS_ROUTE} from "../utils/conts";
+import { IRoute } from "../types/types";
 
 export const publicRoutes: IRoute[] = [
     {path: LOGIN_ROUTE, exact: true, component: SignIn},
@@ -15,5 +8,6 @@ export const publicRoutes: IRoute[] = [
 ]
 
 export const privateRoutes: IRoute[] = [
-    {path: CHAT_ROUTE, exact: true, component: Chat}
+    {path: CHAT_ROUTE, exact: true, component: Chat},
+    {path: SETTINGS_ROUTE, exact: true, component: Settings}
 ]
