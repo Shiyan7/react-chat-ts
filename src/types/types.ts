@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction} from "react";
+import {Dispatch, ElementType, SetStateAction} from "react";
 
 export type TypeSetState<T> = Dispatch<SetStateAction<T>>
 
@@ -31,7 +31,7 @@ export interface IAvatar {
 export interface IRoute {
     path: string;
     exact?: boolean;
-    component: React.ComponentType;
+    element: ElementType;
 }
 
 export interface IMenu {

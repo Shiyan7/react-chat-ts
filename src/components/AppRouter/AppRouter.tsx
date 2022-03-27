@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import {Redirect, Route, Switch} from 'react-router-dom';
+import { Navigate, Route, Routes} from 'react-router-dom';
 import {privateRoutes, publicRoutes} from '../../router';
 import {CHAT_ROUTE, LOGIN_ROUTE} from '../../utils/conts';
 import {useAuthState} from 'react-firebase-hooks/auth'
@@ -16,28 +16,28 @@ export const AppRouter: FC = () => {
         loading ? <Loader/> :
 
             user ? (
-                <Switch>
+                <Routes>
                     {privateRoutes.map(route =>
                         <Route
                             path={route.path}
-                            component={route.component}
+                            element={<route.element />}
                             key={route.path}
                         />
                     )}
-                    <Redirect to={CHAT_ROUTE}/>
-                </Switch>
+                    <Route path="*" element={<Navigate to={CHAT_ROUTE} replace />}/>
+                </Routes>
             ) : (
-                <Switch>
+                <Routes>
                     {publicRoutes.map(route =>
                         <Route
                             path={route.path}
-                            component={route.component}
+                            element={<route.element />}
                             key={route.path}
                         />
                     )}
 
-                    <Redirect to={LOGIN_ROUTE}/>
-                </Switch>
+                    <Route path="*" element={<Navigate to={LOGIN_ROUTE} replace />}/>
+                </Routes>
             )
     );
 }

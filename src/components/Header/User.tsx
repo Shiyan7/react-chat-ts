@@ -6,11 +6,13 @@ import { useAuth } from '../../providers/useAuth';
 import { Avatar } from '../Avatar/Avatar'
 import { Link } from 'react-router-dom'
 import { SETTINGS_ROUTE } from '../../utils/conts';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const User: FC = () => {
   const [menuOpen, setMenuOpen] = useState<null | HTMLElement>(null);
   const open = Boolean(menuOpen);
-  const { ga, user } = useAuth()
+  const { ga } = useAuth()
+  const [user] = useAuthState(ga)
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     setMenuOpen(e.currentTarget);
@@ -70,8 +72,8 @@ export const User: FC = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar width={30} height={30} txt={user?.name} />
-          {user?.name || 'My account'}
+          <Avatar width={30} height={30} txt={user?.displayName} />
+          {user?.displayName || 'My account'}
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to={SETTINGS_ROUTE} >
