@@ -69,9 +69,9 @@ export const User: FC = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem selected={true}>
+        <MenuItem>
           <Avatar width={30} height={30} txt={user?.name} />
-          {user?.name}
+          {user?.name || 'My account'}
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to={SETTINGS_ROUTE} >

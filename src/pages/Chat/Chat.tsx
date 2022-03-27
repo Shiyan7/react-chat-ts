@@ -10,27 +10,27 @@ import {IMessage} from '../../types/types';
 import dayjs from 'dayjs';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
+import styles from './Chat.module.scss'
 
 export const Chat: FC = () => {
 
     const {ga, db} = useAuth()
     const [user] = useAuthState(ga)
     const [value, setValue] = useState<string>('')
-    const chatContainer = useRef<any>(null)
     const [messages, setMessages] = useState<IMessage[]>([])
+    const chatContainer = useRef<HTMLElement>(null)
 
     useEffect(
         () => {
             onSnapshot(
-                query(collection(db, 'messages'), orderBy
-                ('timestamp', 'asc')),
+                query(collection(db, 'messages'), orderBy('timestamp', 'asc')),
                 snapshot => {
                     setMessages(
                         snapshot.docs.map(
                             d => ({
                                 uid: d.id,
                                 ...d.data(),
-                                timestamp: dayjs.unix(d.data()?.timestamp.seconds).format('HH:mm')
+                                timestamp: dayjs.unix(d.data()?.timestamp?.seconds).format('HH:mm') || '00:00'
                             } as IMessage)
                         )
                     )
@@ -64,50 +64,41 @@ export const Chat: FC = () => {
     }
 
     useEffect(() => {
-        chatContainer.current?.scrollTo(0, 99999)
+        chatContainer.current?.scrollTo(0, chatContainer.current.scrollHeight)
     }, [messages])
 
     return (
-        <div>
-            <Container maxWidth='md' sx={{paddingTop: 8, paddingBottom: 8}}>
-                <Box sx={{display: 'flex', alignItems: 'flex-end', mb: 2}}>
-                    <Typography lineHeight='25px' variant='h6' mr='14px'>Chat</Typography>
-                    <Typography variant='caption' color='#909090'>{messages.length} messages</Typography>
-                </Box>
-                <Grid sx={{height: '500px'}}>
-                    <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#f5f5f5', height: '100%', marginBottom: '15px', borderRadius: '10px'}}>
-                        <SimpleBar scrollableNodeProps={{ref: chatContainer}} style={{maxHeight: '100%'}}>
-                            <Box sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                padding: '20px 30px 20px 30px',
-                                overflowY: 'auto'
-                            }}>
-                                {messages?.length
-                                
-                                ?
-                                messages.map((message, idx) =>
-                                    <Message message={message} key={idx} />
-                                )
-                                :
-                                <NoMessages />}
-                            </Box>
-                        </SimpleBar>
+        <Container maxWidth='md' sx={{paddingTop: 8, paddingBottom: 8}}>
+            <Box sx={{display: 'flex', alignItems: 'flex-end', mb: 2}}>
+                <Typography lineHeight='25px' variant='h6' mr='14px'>Chat</Typography>
+                <Typography variant='caption' color='#909090'>{messages.length} messages</Typography>
+            </Box>
+            <Box className={styles.chat}>
+                <SimpleBar scrollableNodeProps={{ref: chatContainer}} style={{maxHeight: '100%'}}>
+                    <Box className={styles.chatContainer}>
+                        {messages?.length
+                        ?
+                        messages.map((message, idx) =>
+                            <Message message={message} key={idx} />
+                        )
+                        :
+                        <NoMessages />
+                        }
                     </Box>
-                    <Box onSubmit={sendMessage} component='form' sx={{display: 'flex'}}>
-                        <TextField
-                            sx={{width: '100%', mr: '15px'}}
-                            variant='outlined'
-                            placeholder='Type something...'
-                            value={value}
-                            onChange={e => setValue(e.target.value)}
-                        />
-                        <Fab onClick={sendMessage} sx={{padding: '5px 20px'}} color='primary' aria-label="Send message">
-                            <Send />
-                        </Fab>
-                    </Box>
-                </Grid>
-            </Container>
-        </div>
+                </SimpleBar>
+            </Box>
+            <Box onSubmit={sendMessage} component='form' sx={{display: 'flex'}}>
+                <TextField
+                    sx={{width: '100%', mr: '15px'}}
+                    variant='outlined'
+                    placeholder='Type something...'
+                    value={value}
+                    onChange={e => setValue(e.target.value)}
+                />
+                <Fab onClick={sendMessage} sx={{padding: '5px 20px'}} color='primary' aria-label="Send message">
+                    <Send />
+                </Fab>
+            </Box>
+        </Container>
     )
 }

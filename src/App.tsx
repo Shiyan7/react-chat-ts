@@ -1,49 +1,16 @@
-import {createContext, FC, useMemo, useState} from 'react'
-import {AppRouter} from './components/AppRouter/AppRouter'
-import {createTheme, CssBaseline, ThemeProvider, useMediaQuery} from '@mui/material'
-import {Header} from './components/Header/Header'
+import {FC} from 'react'
 import {BrowserRouter} from 'react-router-dom';
-
-export const ColorModeContext = createContext({
-    toggleColorMode: () => {
-    }
-});
+import {CssBaseline} from '@mui/material'
+import {AppRouter} from './components/AppRouter/AppRouter'
+import {Header} from './components/Header/Header'
 
 export const App: FC = () => {
 
-    const [mode, setMode] = useState<'light' | 'dark'>('light');
-
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-    const colorMode = useMemo(
-        () => ({
-            toggleColorMode: () => {
-                setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-            },
-        }),
-        //eslint-disable-next-line
-        [prefersDarkMode],
-    );
-
-    const theme = useMemo(
-        () =>
-            createTheme({
-                palette: {
-                    mode,
-                },
-            }),
-        [mode],
-    );
-
     return (
         <BrowserRouter basename='/react-chat-ts/'>
-            <ColorModeContext.Provider value={colorMode}>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline/>
-                    <Header/>
-                    <AppRouter/>
-                </ThemeProvider>
-            </ColorModeContext.Provider>
+            <CssBaseline/>
+            <Header/>
+            <AppRouter/>
         </BrowserRouter>
     )
 }

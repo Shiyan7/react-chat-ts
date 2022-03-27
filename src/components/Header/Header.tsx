@@ -1,9 +1,8 @@
-import {AppBar, IconButton, Toolbar, Typography } from '@mui/material'
 import {FC, useState} from 'react'
-import MenuIcon from '@mui/icons-material/Menu';
+import {AppBar, IconButton, Toolbar, Typography } from '@mui/material'
 import {User} from './User';
-import {ToggleColorMode} from './ToggleColorMode';
-import { Menu } from './Menu';
+import {Menu} from './Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export const Header: FC = () => {
     
@@ -19,7 +18,6 @@ export const Header: FC = () => {
                     Chat App
                 </Typography>
                 <User/>
-                <ToggleColorMode/>
             </Toolbar>
             <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         </AppBar>

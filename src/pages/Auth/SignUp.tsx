@@ -1,4 +1,4 @@
-import {FC, useState} from 'react'
+import {FC, FormEvent, useState} from 'react'
 import {Button, TextField, Link, Grid, Box, Typography, Container} from '@mui/material'
 import {LOGIN_ROUTE} from '../../utils/conts'
 import {Link as RouterLink} from 'react-router-dom'
@@ -21,7 +21,7 @@ export const SignUp: FC = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
 
-    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
         e.preventDefault()
 
         try {
@@ -130,6 +130,7 @@ export const SignUp: FC = () => {
                         fullWidth
                         size='large'
                         variant="contained"
+                        onClick={handleLogin}
                         sx={{mt: 3, mb: 2}}
                     >
                         Sign Up

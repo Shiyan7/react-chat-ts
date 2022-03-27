@@ -33,7 +33,7 @@ export const SignIn: FC = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
 
-    const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
         e.preventDefault();
 
         try {
@@ -114,6 +114,7 @@ export const SignIn: FC = () => {
                         size='large'
                         fullWidth
                         variant='contained'
+                        onClick={handleLogin}
                         sx={{mb: 2}}
                     >
                         Sign In
