@@ -1,16 +1,16 @@
-import {Send} from '@mui/icons-material'
-import {Box, Container, Fab, Grid, TextField, Typography} from '@mui/material'
 import {FC, FormEvent, useEffect, useRef, useState} from 'react'
+import {Box, Container, Fab, TextField, Typography} from '@mui/material'
+import {Send} from '@mui/icons-material'
 import {useAuth} from '../../providers/useAuth'
-import {addDoc, collection, onSnapshot, orderBy, query, serverTimestamp} from 'firebase/firestore';
+import {addDoc, collection, onSnapshot, orderBy, query, serverTimestamp} from 'firebase/firestore'
 import {useAuthState} from 'react-firebase-hooks/auth';
-import {NoMessages} from "./NoMessages";
-import {Message} from './Message';
-import {IMessage} from '../../types/types';
-import dayjs from 'dayjs';
-import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
+import {NoMessages} from "./NoMessages"
+import {Message} from './Message'
+import {IMessage} from '../../types/types'
 import styles from './Chat.module.scss'
+import dayjs from 'dayjs'
+import SimpleBar from 'simplebar-react'
+import 'simplebar/dist/simplebar.min.css'
 
 export const Chat: FC = () => {
 
@@ -26,18 +26,23 @@ export const Chat: FC = () => {
                 query(collection(db, 'messages'), orderBy('timestamp', 'asc')),
                 snapshot => {
                     setMessages(
-                        snapshot.docs.map(
-                            d => ({
-                                uid: d.id,
-                                ...d.data(),
-                                timestamp: dayjs.unix(d.data()?.timestamp?.seconds).format('HH:mm') || '00:00'
-                            } as IMessage)
+                        snapshot.docs.map(d =>
+                            d.data()?.timestamp
+                                ? ({
+                                    uid: d.id,
+                                    ...d.data(),
+                                    timestamp: dayjs.unix(d.data()?.timestamp.seconds).format('HH:mm')
+                                } as IMessage)
+                                : ({
+                                    uid: d.id,
+                                    ...d.data(),
+                                } as IMessage)
                         )
                     )
                 }
             )
             // eslint-disable-next-line
-    }, [])
+        }, [])
 
     const sendMessage = async (e: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
 
@@ -56,10 +61,10 @@ export const Chat: FC = () => {
 
                 setValue('')
             }
-            
+
         } catch (error: unknown) {
             console.error(error);
-            
+
         }
     }
 
@@ -77,12 +82,12 @@ export const Chat: FC = () => {
                 <SimpleBar scrollableNodeProps={{ref: chatContainer}} style={{maxHeight: '100%'}}>
                     <Box className={styles.chatContainer}>
                         {messages?.length
-                        ?
-                        messages.map((message, idx) =>
-                            <Message message={message} key={idx} />
-                        )
-                        :
-                        <NoMessages />
+                            ?
+                            messages.map((message, idx) =>
+                                <Message message={message} key={idx}/>
+                            )
+                            :
+                            <NoMessages/>
                         }
                     </Box>
                 </SimpleBar>
@@ -96,7 +101,7 @@ export const Chat: FC = () => {
                     onChange={e => setValue(e.target.value)}
                 />
                 <Fab onClick={sendMessage} sx={{padding: '5px 20px'}} color='primary' aria-label="Send message">
-                    <Send />
+                    <Send/>
                 </Fab>
             </Box>
         </Container>

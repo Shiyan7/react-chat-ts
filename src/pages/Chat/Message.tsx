@@ -20,7 +20,7 @@ export const Message:FC<{message: IMessage}> = ({message}) => {
                 backgroundColor: '#eaeaea',
                 borderRadius: '10px',
                 padding: '15px',
-                minWidth: '300px'
+                minWidth: '222px'
             }}>
                 
                 <Avatar txt={message.displayName} width={38} height={38} />
