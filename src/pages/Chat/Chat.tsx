@@ -7,7 +7,7 @@ import {useAuthState} from 'react-firebase-hooks/auth';
 import {NoMessages} from "./NoMessages"
 import {Message} from './Message'
 import {IMessage} from '../../types/types'
-import styles from './Chat.module.scss'
+import styles from './Style.module.scss'
 import dayjs from 'dayjs'
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
