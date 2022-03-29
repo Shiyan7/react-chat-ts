@@ -4,7 +4,6 @@ import {Send} from '@mui/icons-material'
 import {useAuth} from '../../providers/useAuth'
 import {addDoc, collection, onSnapshot, orderBy, query, serverTimestamp} from 'firebase/firestore'
 import {useAuthState} from 'react-firebase-hooks/auth';
-import {NoMessages} from "./NoMessages"
 import {Message} from './Message'
 import {IMessage} from '../../types/types'
 import styles from './Style.module.scss'
@@ -81,14 +80,9 @@ export const Chat: FC = () => {
             <Box className={styles.chat}>
                 <SimpleBar scrollableNodeProps={{ref: chatContainer}} style={{maxHeight: '100%'}}>
                     <Box className={styles.chatContainer}>
-                        {messages?.length
-                            ?
-                            messages.map((message, idx) =>
-                                <Message message={message} key={idx}/>
-                            )
-                            :
-                            <NoMessages/>
-                        }
+                        {messages.map((message, idx) =>
+                            <Message message={message} key={idx}/>
+                        )}
                     </Box>
                 </SimpleBar>
             </Box>
