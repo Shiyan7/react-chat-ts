@@ -2,7 +2,7 @@
   "name": "react-chat-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://shiyan7.github.io/react-chat-ts/",
+  "homepage": "https://react-chat-ts-9b81f.web.app/",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
@@ -17,7 +17,6 @@
     "classnames": "^2.3.1",
     "dayjs": "^1.11.0",
     "firebase": "^9.6.9",
-    "gh-pages": "^3.2.3",
     "node-sass": "^5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -32,8 +31,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "deploy": "gh-pages -d build",
-    "predeploy": "npm run build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
