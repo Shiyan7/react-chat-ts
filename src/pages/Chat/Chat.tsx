@@ -6,7 +6,7 @@ import {addDoc, collection, onSnapshot, orderBy, query, serverTimestamp} from 'f
 import {useAuthState} from 'react-firebase-hooks/auth';
 import {Message} from './Message'
 import {IMessage} from '../../types/types'
-import styles from './Style.module.scss'
+import styles from './Chat.module.scss'
 import dayjs from 'dayjs'
 import SimpleBar from 'simplebar-react'
 import classNames from 'classnames'

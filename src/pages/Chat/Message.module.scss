@@ -1,0 +1,96 @@
+.message {
+    --color: #eaeaea;
+    --rounded: 10px;
+    display: flex;
+    align-items: flex-end;
+    margin: 15px 0;
+
+    @media (max-width: 576px) {
+        margin: 11px 0;
+    }
+}
+
+.avatar {
+    margin-right: 15px;
+
+    @media (max-width: 576px) {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+.myMessage {
+    --color: #4169e1;
+    color: #fff;
+    margin-left: auto;
+
+    .text {
+        border-bottom-left-radius: 30px;
+    }
+
+    .text:after {
+        display: none;
+    }
+
+    .timestamp {
+        color: rgba(#fff, 0.5);
+    }
+}
+
+.name {
+    margin-bottom: 4px;
+
+    @media (max-width: 576px) {
+        font-size: 14px;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    border-bottom-left-radius: 0;
+    background-color: var(--color);
+    padding: 12px 17px;
+
+    @media (max-width: 576px) {
+        padding: 8px 14px;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -15px;
+        width: 32px;
+        height: 16px;
+        background-color: var(--color);
+        mask-image: url("data:image/svg+xml,%3Csvg width='33' height='16' viewBox='0 0 33 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16.5365 -1.19209e-07C17.0844 8.93808 23.7833 16 31.9667 16L1.03333 16C9.21667 16 15.9156 8.93808 16.4635 -1.19209e-07H16.5365ZM0.499998 15.9899C0.677082 15.9965 0.855207 16 1.03333 16H0.499998V15.9899ZM32.5 15.9899C32.3229 15.9965 32.1448 16 31.9667 16H32.5V15.9899Z' fill='white'/%3E%3C/svg%3E%0A");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+.messageText {
+    padding-right: 20px;
+    font-size: 16px;
+    line-height: 16px;
+
+    @media (max-width: 576px) {
+        font-size: 14px;
+        line-height: 18px;
+    }
+}
+
+.timestamp {
+    padding-top: 3px;
+    font-size: 14px;
+    line-height: 14px;
+    color: rgba(#000, 0.5);
+}
