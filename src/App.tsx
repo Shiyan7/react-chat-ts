@@ -7,7 +7,7 @@ import {Header} from './components/Header/Header'
 export const App: FC = () => {
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/react-chat-ts/'>
             <CssBaseline/>
             <Header/>
             <AppRouter/>

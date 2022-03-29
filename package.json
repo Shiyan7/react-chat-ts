@@ -2,7 +2,7 @@
   "name": "react-chat-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://shiyan7.github.io/react-chat-ts",
+  "homepage": "https://shiyan7.github.io/react-chat-ts/",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
