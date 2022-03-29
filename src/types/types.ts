@@ -25,7 +25,7 @@ export interface IUser {
 export interface IAvatar {
     width?: number
     height?: number
-    txt?: any
+    txt?: string | undefined
 }
 
 export interface IRoute {

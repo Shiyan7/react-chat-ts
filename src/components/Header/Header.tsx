@@ -9,7 +9,7 @@ export const Header: FC = () => {
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
     return (
-        <AppBar color='primary' position='static'>
+        <AppBar color='primary' position='fixed'>
             <Toolbar variant='regular'>
                 <IconButton onClick={() => setMenuOpen(true)} edge='start' color="inherit" aria-label="menu" sx={{mr: 2}}>
                     <MenuIcon/>

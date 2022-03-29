@@ -73,7 +73,7 @@ export const Chat: FC = () => {
     }, [messages])
 
     return (
-        <Container maxWidth='md' sx={{paddingTop: 8, paddingBottom: 8}}>
+        <Container maxWidth='md' sx={{paddingTop: 16, paddingBottom: 8}}>
             <Box sx={{display: 'flex', alignItems: 'flex-end', mb: 2}}>
                 <Typography lineHeight='25px' variant='h6' mr='14px'>Chat</Typography>
                 <Typography variant='caption' color='#909090'>{messages.length} messages</Typography>

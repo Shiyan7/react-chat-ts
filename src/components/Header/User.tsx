@@ -72,7 +72,7 @@ export const User: FC = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar width={30} height={30} txt={user?.displayName} />
+          <Avatar width={30} height={30} txt={user?.displayName?.toString()} />
           {user?.displayName || 'My account'}
         </MenuItem>
         <Divider />

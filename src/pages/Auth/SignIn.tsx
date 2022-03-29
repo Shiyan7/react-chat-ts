@@ -61,7 +61,7 @@ export const SignIn: FC = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    padding: '64px 0'
+                    padding: '128px 0 64px'
                 }}
             >
                 <Typography textTransform='uppercase' fontWeight='500' component="h1" fontSize='30px' sx={{mb: 1}}>

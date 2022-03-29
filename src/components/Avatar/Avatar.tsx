@@ -4,7 +4,7 @@ import { IAvatar } from '../../types/types';
 
 export const Avatar: FC<IAvatar> = ({width = 30, height = 30, txt}) => {
 
-    const stringAvatar = (txt: string) => {
+    const stringAvatar = (txt: string | undefined) => {
         if(!txt) return false;
 
         return {
