@@ -12,9 +12,9 @@ export const Message:FC<{message: IMessage}> = ({message}) => {
 
     return (
         <Box className={classNames(styles.message, user?._id === message.uid ? styles.myMessage : '' )}>                
-            <Avatar txt={message.displayName} width={38} height={38} />
+            <Avatar cls={styles.avatar} txt={message.displayName} width={38} height={38} />
             <Box sx={{ml: 1}}>
-                <Box sx={{display: 'flex', alignItems: 'center', mb: '2px', fontSize: '15px'}}>
+                <Box className={styles.text}>
                     <Box mr={1}>{message.displayName}</Box>
                     <Typography className={styles.timestamp} variant='body2'>
                         {message.timestamp}

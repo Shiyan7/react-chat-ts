@@ -22,11 +22,6 @@ export interface IUser {
     password: string
 }
 
-export interface IAvatar {
-    width?: number
-    height?: number
-    txt?: string | undefined
-}
 
 export interface IRoute {
     path: string;
